@@ -1,0 +1,29 @@
+header,
+footer {
+    background-color: #6c6c6c;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+header h1 {
+    margin: 0;
+  }
+header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+header nav ul li {
+  margin-left: 15px;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: #000000;
+  text-transform: uppercase;
+  border-bottom: 3px solid #000000;
+}
