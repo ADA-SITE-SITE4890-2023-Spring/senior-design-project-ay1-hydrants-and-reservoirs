@@ -1,0 +1,54 @@
+{% extends 'base2.html' %}
+{% block content %}
+
+<div class="container">
+   
+    <h1>Last Checked Reservoirs</h1>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Picture</th>
+                <th>Confirmation</th>
+                <th>Date</th>
+                <th>Information </th>
+                <th>Name </th>
+                <th>distance </th>
+
+                {% comment %} <th>Action</th> {% endcomment %}
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Add rows for the Reservoirs table here -->
+            {% for r in checkups %}
+
+            <tr>
+              <td>{{r.id}}</td>
+              {% if r.picture %}
+              <td><img src="{{r.picture.url}}" height="150px" width="200px" /></td>
+              
+            {% else %}
+            <td><img src="" height="150px" width="200px" alt="No Image" /></td>
+            {% endif %}
+              <td>{{r.confirmed}}</td>
+              <td>{{r.date}}</td>
+              <td>{{r.information}}</td>
+              <td>{{r.Reservoir.name}}</td>
+              <td>{{r.distance}}</td>
+
+              {% comment %} <td>
+                {{r.id}}
+                 
+              </td> {% endcomment %}
+          </tr>
+          {% endfor %}
+
+            
+            
+        </tbody>
+    </table>
+    
+</div>
+{% endblock  %}
+
+<!-- Add the Bootstrap JS file -->

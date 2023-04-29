@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My Form</title>
+  
+  <!-- Add the Bootstrap CSS file -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Site</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Center the container element */
+        .container {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+      </style>
+  </head>
+<body>
+    <header>
+        <h1>AquaSource.az</h1>
+        <nav>
+          <ul>
+            <li><a href="map.html">Map</a></li>
+            <li><a href="list.html">List</a></li>
+            <li><a href="checkups.html">Checkups</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </nav>
+      </header>
+  
+  <div class="container">
+    <h1>Create Reservoir</h1>
+    <form>
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" class="form-control" id="location" name="location" required>
+      </div>
+    
+      <div class="form-group">
+        <label for="condition">Condition:</label>
+        <select class="form-control" id="condition" name="condition" required>
+          <option value="Good">Good</option>
+          <option value="Needs maintenance">Needs maintenance</option>
+          <option value="Out of service">Out of service</option>
+        </select>
+      </div>
+    
+      <div class="form-group">
+        <label for="coordinates">Coordinates:</label>
+        <input type="text" class="form-control" id="coordinates" name="coordinates" required>
+      </div>
+    
+      <div class="form-group">
+        <label for="pressure">Water Level:</label>
+        <input type="text" class="form-control" id="water-level" name="water-level" required>
+      </div>
+    
+      <div class="form-group">
+        <label for="last-checkup">Checkup date:</label>
+        <input type="date" class="form-control" id="checkup-date" name="checkup-date" required>
+      </div>
+    
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+  </div>
+  
+  <!-- Add the Bootstrap JavaScript file -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <footer>
+    <p>ADAU: Project - AY1</p>
+  </footer>
+
+</body>
+</html>

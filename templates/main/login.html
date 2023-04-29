@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Login Page</title>
+        <!-- Add the Bootstrap CSS file -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        
+    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Site</title>
+  <link  href="{% static 'css/style.css' %}"  rel="stylesheet" />
+
+    <style>
+        /* Center the container element */
+        .container {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+        
+        /* Add border to input fields */
+        input[type="text"], input[type="password"] {
+          border: 2px solid black;
+          border-radius: 5px;
+          padding: 5px;
+        }
+
+        
+        .rectangle {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          height: 600px;
+          width: 1000px;
+          background-color: #e0e0e0;
+        }
+
+    
+      </style>
+  </head>
+<body>
+    <header>
+        <h1>AquaSource.az</h1>
+        <nav>
+          {% comment %} <ul>
+            <li><a href="map.html">Map</a></li>
+            <li><a href="list.html">List</a></li>
+            <li><a href="checkups.html">Checkups</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul> {% endcomment %}
+        </nav>
+      </header>
+      <div class="rectangle"></div>
+      <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<h1>Login to the system</h1>
+          <form class="form" method="POST" action="{% url 'signIn' %}">
+
+            {% csrf_token %}
+						<div class="form-group">
+							<label for="username">Username:</label>
+              {{form.username}}
+                      <span style="color: red;">{{form.username.errors}}</span>
+						</div>
+						<div class="form-group">
+							<label for="password">Password:</label>
+              {{form.password}}
+                      <span style="color: red;">{{form.password.errors}}</span>
+						</div>
+						<button type="submit" class="btn btn-primary">Login</button>
+            
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Add the Bootstrap JS file -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ <footer>
+        <p>ADAU: Project - AY1</p>
+      </footer>
+</body>
+</html>

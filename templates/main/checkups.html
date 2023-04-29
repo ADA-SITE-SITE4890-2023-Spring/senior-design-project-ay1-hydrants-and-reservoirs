@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <a href="{% url 'hydrants' %}"  class="btn btn-danger btn-lg btn-block">Hydrant</a>
+          </div>
+          <div class="col-sm-6">
+            <a href="{% url 'reservoirs' %}" class="btn btn-info btn-lg btn-block">Reservoir</a>
+          </div>
+        </div>
+      </div>
+      {% endblock  %}

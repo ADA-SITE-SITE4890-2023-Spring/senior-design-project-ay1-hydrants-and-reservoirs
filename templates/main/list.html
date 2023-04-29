@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% load selected_allocation %}
+
+      {% block content %}
+      <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <table >
+                    <tr  >
+                        <td style="border: 1px solid gray; "> &nbsp;&nbsp; Your Token &nbsp; &nbsp; </td>
+                        <td style="border: 1px solid gray "> &nbsp;&nbsp;  {{token}} &nbsp;&nbsp;  </td>
+
+                    </tr>
+                </table>                    
+            </div>
+            <div class="col-6 ">
+                <form class="form-inline" method="post">
+                    {% csrf_token %}
+                    <input class="form-control mr-sm-2" type="search" name="search_text" required placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+            </div>
+        </div>
+        <h1>Hydrants</h1>
+     
+        {% comment %} <a href="#reservoirs-table" class="btn btn-primary mb-3">Go to Reservoirs</a> {% endcomment %}
+        <table class="table table-striped table-bordered" id="hydrants-table">
+            <!-- table content goes here -->
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Status</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Coordinates</th>
+                    <th>Pressure</th>
+                    <th>Last Checkup</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Add rows for the Hydrants table here -->
+                {% for h in hydrant %}
+                <tr>
+                    <td>{{h.id}}</td>
+                    <td>{{h.status}}</td>
+                    <td>{{h.name}}</td>
+                    <td>{{h.address}}</td>
+                    <td><a href="https://www.google.com/maps/d/embed?mid=1O2i3KMrUusQMHTN3WY48Jn7ahrBpToL2&amp;hl=ru&amp;ehbc=2E312F&amp;z=18&amp;ll={{h.coordinates}}" target="_blank">{{h.coordinates}}</a></td>
+                    <td>{{h.pressure}} PSI</td>
+                    <td>{% recent_hydrant_check_up h.id as recent_hyd_checkup %} {{recent_hyd_checkup}}</td>
+                    <td>
+                        <a href="{% url 'create_hydrant_checkup' h.pk %}" class="btn btn-danger">Create Checkup</a>
+                       
+                    </td>
+                </tr>
+                {% endfor %}
+
+               
+    
+          
+                
+                
+    
+            </tbody>
+        </table>
+        <ul class="pagination">
+            {% if hydrant.has_previous %}
+            <li class="page-item"><a class="page-link" href="/list/?page=1">First</a></li>
+            <li class="page-item"><a class="page-link" href="/list/?page={{ hydrant.previous_page_number }}">Previous</a></li>
+            {% endif  %}
+        
+            {% if hydrant.has_next %}
+            <li class="page-item"><a class="page-link" href="/list/?page={{ hydrant.next_page_number }}">Next</a></li>
+        
+            {% endif  %}
+        
+        </ul>
+        {% comment %} <a href="create_hydrant.html" class="btn btn-success mb-3">Create Hydrant</a> {% endcomment %}
+
+            
+        
+        <h1>Reservoirs</h1>
+        {% comment %} <a href="#hydrants-table" class="btn btn-primary mb-3">Go to Hydrants</a> {% endcomment %}
+        <table class="table table-striped table-bordered" id="reservoirs-table">
+            <!-- table content goes here -->
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Status</th>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Coordinates</th>
+                        <th>Water Level</th>
+                        <th>Volume</th>
+
+                        <th>Last Checkup</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Add rows for the Reservoirs table here -->
+                {% for l in reservoir %}
+
+                    <tr>
+                        <td>{{l.id}}</td>
+                        <td title="{{l.status}}">{{l.status}}</td>
+                        <td>{{l.name}}</td>
+                        <td>{{l.address}}</td>
+                    <td><a href="https://www.google.com/maps/d/embed?mid=1O2i3KMrUusQMHTN3WY48Jn7ahrBpToL2&amp;hl=ru&amp;ehbc=2E312F&amp;z=18&amp;ll={{l.coordinates}}" target="_blank">{{l.coordinates}}</a></td>
+
+                        <td>{% amount_of_water_in_percent l.id  %} {{result}}</td>
+                        <td>{% volume_level l.length l.width l.depth as total_sect %} {{total_sect}}</td>
+                        <td>{% recent_check_up l.id as recent_checkup %} {{recent_checkup}}</td>
+                        <td>
+                            <a href="{% url 'create_reservoir_checkup' l.pk %}" class="btn btn-danger">Create Checkup</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                  
+    
+                         
+    
+    
+                </tbody>
+            </table>
+            <ul class="pagination">
+                {% if reservoir.has_previous %}
+                <li class="page-item"><a class="page-link" href="/list/?reservoirpage=1">First</a></li>
+                <li class="page-item"><a class="page-link" href="/list/?reservoirpage={{ reservoir.previous_page_number }}">Previous</a></li>
+                {% endif  %}
+            
+                {% if reservoir.has_next %}
+                <li class="page-item"><a class="page-link" href="/list/?reservoirpage={{ reservoir.next_page_number }}">Next</a></li>
+            
+                {% endif  %}
+            
+            </ul>
+            {% comment %} <a href="create_reservoir.html" class="btn btn-success mb-3">Create Reservoir</a> {% endcomment %}
+       
+        
+    </div>
+    <br>
+{% endblock  %}
+
+<!-- Add the Bootstrap JS file -->
